@@ -40,16 +40,16 @@ def register(request):
 # Role-Based Access Control Views
 
 # Admin view (restricted to 'Admin' role)
-@user_passes_test(lambda u: hasattr(u, 'userprofile') and u.userprofile.role == 'Admin')
+@user_passes_test(lambda u: u.userprofile.role == 'Admin')
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
 # Librarian view (restricted to 'Librarian' role)
-@user_passes_test(lambda u: hasattr(u, 'userprofile') and u.userprofile.role == 'Librarian')
+@user_passes_test(lambda u: u.userprofile.role == 'Librarian')
 def librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
 
 # Member view (restricted to 'Member' role)
-@user_passes_test(lambda u: hasattr(u, 'userprofile') and u.userprofile.role == 'Member')
+@user_passes_test(lambda u: u.userprofile.role == 'Member')
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
