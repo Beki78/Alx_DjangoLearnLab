@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.views.generic.detail import DetailView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
+from .views import list_books
 from .models import Library
 from .models import Book
 from .models import UserProfile 
