@@ -16,12 +16,12 @@ def query_books_in_library(library_name):
     books = library.books.all()
     return books
 
-# Retrieve the librarian for a library
+# Retrieve the librarian for a library using Librarian.objects.get
 def query_librarian_for_library(library_name):
     # Retrieve the library instance using the library's name
     library = Library.objects.get(name=library_name)
-    # Get the librarian associated with the library
-    librarian = library.librarian
+    # Retrieve the librarian associated with the library
+    librarian = Librarian.objects.get(library=library)
     return librarian
 
 # Sample Usage
