@@ -128,6 +128,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECURE_BROWSER_XSS_FILTER = True  # Enables the browser's XSS filtering
-X_FRAME_OPTIONS = 'DENY'  # Prevents the site from being loaded in a frame, mitigating clickjacking attacks
-SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents the browser from trying to guess the content type
+SECURE_BROWSER_XSS_FILTER = True  
+X_FRAME_OPTIONS = 'DENY'  
+SECURE_CONTENT_TYPE_NOSNIFF = True  
+
+CSRF_COOKIE_SECURE = True  
+SESSION_COOKIE_SECURE = True 
