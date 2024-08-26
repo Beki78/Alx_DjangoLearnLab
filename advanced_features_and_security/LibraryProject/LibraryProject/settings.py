@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8u$j&99*)rci%%s8iau1xy!j$8w^)5lc1f(7i+0u-swt)og2tc
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'LibraryProject.urls'
@@ -126,3 +127,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SECURE_BROWSER_XSS_FILTER = True  # Enables the browser's XSS filtering
+X_FRAME_OPTIONS = 'DENY'  # Prevents the site from being loaded in a frame, mitigating clickjacking attacks
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents the browser from trying to guess the content type
