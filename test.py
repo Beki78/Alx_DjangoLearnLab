@@ -82,12 +82,12 @@
 #     return hash_table
 # print(hashed("aA", "aAAbbbb"))
 
-def canConstruct(ransomNote: str, magazine: str) -> bool:
-        hash_table = {}
-        count = 0
-        for i in ransomNote:
-                count +=1
-                hash_table[i] = count
+# def canConstruct(ransomNote: str, magazine: str) -> bool:
+#         hash_table = {}
+#         count = 0
+#         for i in ransomNote:
+#                 count +=1
+#                 hash_table[i] = count
 
-        print(hash_table)
-canConstruct("aia", "bb")
+#         print(hash_table)
+# canConstruct("aia", "bb")
