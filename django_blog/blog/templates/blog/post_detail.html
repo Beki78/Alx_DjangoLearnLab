@@ -1,0 +1,41 @@
+<!-- blog/templates/blog/post_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>By {{ post.author }} | Published on {{ post.published_date }}</p>
+  <div>
+    {{ post.content|linebreaks }}
+  </div>
+
+  {% if user.is_authenticated and user == post.author %}
+    <a href="{% url 'post-edit' post.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+  {% endif %}
+{% endblock %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+
+<hr>
+
+<h4>Comments</h4>
+{% for comment in post.comments.all %}
+    <div>
+        <p>{{ comment.content }} - <em>{{ comment.author }}</em> on {{ comment.created_at }}</p>
+        {% if comment.author == user %}
+            <a href="{% url 'edit-comment' comment.id %}">Edit</a> |
+            <a href="{% url 'delete-comment' comment.id %}">Delete</a>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+
+<hr>
+
+<h4>Leave a Comment</h4>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Post Comment</button>
+</form>
