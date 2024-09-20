@@ -2,14 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class CustomUser(AbstractUser):
-    # Other fields...
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='customuser_set',  # Change this name as needed
-        blank=True,
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='customuser_set',  # Change this name as needed
-        blank=True,
-    )
+    bio = models.TextField(blank=True, null=True)  
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)  
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='followed_by', blank=True)  
