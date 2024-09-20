@@ -23,8 +23,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
-        
-        # Create token for the new user
-        Token.objects.create(user=user)
-        
+        Token.objects.create(user=user)  # Create token for the new user
         return user
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+
+    def validate(self, attrs):
+        # Implement your validation logic here
+        return attrs
