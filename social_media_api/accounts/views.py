@@ -18,3 +18,16 @@ class LoginView(APIView):
             token, created = Token.objects.get_or_create(user=user)
             return Response({'token': token.key})
         return Response({'error': 'Invalid credentials'}, status=400)
+    
+class FollowViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def follow_user(self, request, user_id):
+        user_to_follow = get_object_or_404(CustomUser, pk=user_id)
+        request.user.following.add(user_to_follow)
+        return Response({"message": f"You are now following {user_to_follow.username}"})
+
+    def unfollow_user(self, request, user_id):
+        user_to_unfollow = get_object_or_404(CustomUser, pk=user_id)
+        request.user.following.remove(user_to_unfollow)
+        return Response({"message": f"You have unfollowed {user_to_unfollow.username}"})
